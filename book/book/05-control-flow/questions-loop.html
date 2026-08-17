@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Questões - Rust v1.9 - Book</title>
+        <title>Questões - Loop - Rust v1.9 - Book</title>
 
 
         <!-- Custom HTML head -->
@@ -177,300 +177,654 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="questões---conceitos-comuns-de-programação"><a class="header" href="#questões---conceitos-comuns-de-programação">Questões - Conceitos Comuns de Programação</a></h1>
+                        <h1 id="questões---loop"><a class="header" href="#questões---loop">Questões - Loop</a></h1>
 <hr>
-<p>01 - Como você escreveria um comentário de linha única em Rust?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=11d0d9b36b3ec6d7e026556a2df259f3">Playground!</a></p>
+<p>01 - Crie um programa que use um loop para contar de 1 a 5. Para cada número, imprima o valor do contador. O loop deve parar quando o contador chegar a 6.</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
 <pre class="playground"><code class="language-rust">fn main() {
-    // Este é um comentário de linha única    
+    let mut contador: u8 = 0;
+
+    loop {
+        contador += 1;
+        println!("Contagem = {}", contador);
+        if contador &gt;= 5 {
+            break;
+        }
+    }
 }</code></pre>
 </details>
-<p>02 - Qual é a sintaxe para comentários de bloco em Rust?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=92ccdce85429042c3c19b90b2739c098">Playground!</a></p>
+<p>02 - Defina uma constante LIMITE com o valor 100. Use um loop para somar números a uma variável mutável sum começando de 1. Pare o loop quando o valor de sum exceder LIMIT e imprima o valor final de sum.</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    /*
-      Este é um comentário de
-      bloco que abrange várias
-      linhas.
-    */
-}</code></pre>
-</details>
-<p>03 - Você pode aninhar comentários de bloco em Rust? Dê um exemplo.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=b385f4e4d830c51899b10fd20c3df383">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    /*
-       Início do comentário externo
-       /* Este é um comentário de bloco aninhado */
-       Fim do comentário externo
-    */    
-}</code></pre>
-</details>
-<p>04 - Qual macro você usaria para imprimir texto na mesma linha, sem adicionar uma quebra de linha no final?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=6f1d77bf1df6b37e13be0394858d6faa">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    print!("Imprimir sem adicionar uma nova linha no final!");
-}</code></pre>
-</details>
-<p>05 - Qual macro você usaria para imprimir texto e adicionar automaticamente uma quebra de linha no final?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=8e657af8456cd2e45c7071387a6e1f30">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    println!("Imprimir e adicionar nova linha no final!");
-}</code></pre>
-</details>
-<p>06 - Escreva um código que imprima “<em>Hello</em>” e “<em>World</em>” na mesma linha usando a macro print!.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=7f19b20530592369971fba8bf265a206">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    print!("Hello, ");
-    print!("World");
-}</code></pre>
-</details>
-<p>07 - Como você insere uma quebra de linha explícita dentro de uma string que está sendo impressa com println!?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=1473956c103116618b8e9d7b11d738d5">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    println!("Primeira linha\nSegunda linha");
-}</code></pre>
-</details>
-<p>08 - Que outras sequências de escape você pode usar em strings Rust? Dê exemplos de pelo menos 3.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=eb0dfd113278e39b07935fe967a36e6f">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    println!("Barra invertida: \\");
-    println!("Olá \"mundo\"");
-    println!(r"C:\Usuários\Snoopy\Documentos\");
-}</code></pre>
-</details>
-<p>09 - Como você declara uma variável chamada score e atribui a ela o valor 100?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=e2483e071f7668c29ab6d4c43e93d5bc">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let score = 100;
-    println!("Score: {}", score);
-}</code></pre>
-</details>
-<p>10 - Escreva uma linha de código que declare uma variável cidade com o valor Recife e a imprima na tela.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=534c15c5dd3777cd8b43f590b00e6898">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let cidade = "Recife";
-    println!("Cidade: {}", cidade);
-}</code></pre>
-</details>
-<p>11 - O que acontece se você tentar usar uma variável antes de declará-la em Rust?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=516e91b84059737ccbf05e4b66f15c2d">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    // Isto causaria um erro de tempo de compilação:
-    println!("{}", x);
-    let x = 5;
-} </code></pre>
-</details>
-<p>12 - Você pode declarar uma variável sem inicializá-la em Rust? Se sim, mostre como usá-la com segurança.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=29057131611a1196cdecaf62afc029c5">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let x: i32; 
-    x = 42;     
-    println!("x = {}", x);
-}</code></pre>
-</details>
-<p>13 - Declare uma variável mutável chamada contador inicializada com 0. Em seguida, escreva o código para alterar o valor para 5 e imprima.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=0470104c01ad820b44ea02bf1f9b0619">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let mut contador = 0;
-    println!("Contador = {}", contador);
-    
-    contador = 5;
-    println!("Contador = {}", contador);
-}</code></pre>
-</details>
-<p>14 - O que acontece se você tentar modificar uma variável imutável em Rust?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=6a85529111197c9537205effe189f958">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let x = 1;    
-    x = 2;
-    println!("x = {}", x);
-}</code></pre>
-</details>
-<p>15 - Como você declara uma constante chamada <em>MAX_SPEED</em> com o valor “9000” do tipo i32?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=3ca1e4c69ef20b6654436f608fe50592">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">const MAX_SPEED: i32 = 9000;
+<pre class="playground"><code class="language-rust">const LIMITE: u8 = 100; 
 
 fn main() {
-    println!("Max Speed: {}", MAX_SPEED);
-}</code></pre>
-</details>
-<p>16 - É possível alterar o valor de uma constante após sua declaração?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=db9590e32122bc2e839341fd5f2d6402">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">const MAX_SPEED: i32 = 100;
+    let mut soma_atual: u8 = 1; 
 
-fn main() {    
-    MAX_SPEED = 200; // erro: cannot assign to this expression
+    loop {
+        println!("{}", soma_atual);
+
+        if soma_atual &gt;= LIMITE {
+            break;
+        }
+
+        soma_atual += soma_atual; 
+    }
 }</code></pre>
-<p>Não. Constantes são sempre imutáveis — a palavra-chave <code>mut</code> não pode ser usada com <code>const</code> de forma alguma. Qualquer tentativa de reatribuição resulta em erro de compilação.</p>
 </details>
-<p>17 - Quais são as principais diferenças entre constantes e variáveis imutáveis em Rust?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=3d4e03767d7986a810cc961681f3b7eb">Playground!</a></p>
+<p>03 - Escreva um loop que imprima repetidamente a mensagem “Estou preso em um loop!”. Use uma variável contadora e uma declaração if para interromper (<em>break</em>) o loop após a 3ª iteração.</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">const CONSTANTE_GLOBAL: i32 = 100;
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 0;
+
+    loop {
+        contador += 1; 
+
+        if contador &gt;= 4 { 
+            break;
+        }
+
+        println!("Estou preso em um loop!"); 
+    }
+}</code></pre>
+</details>
+<p>04 - Use um loop para iterar de 1 a 10. Dentro do loop, verifique se o número atual é par ou ímpar usando o operador de módulo (%). Imprima o resultado formatado, como “O número 3 é ímpar.” O loop deve parar após o número 10.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 0; 
+
+    loop {
+        contador += 1;
+
+        if contador % 2 == 0 { 
+            println!("O número {} é par.", contador);
+        } else {
+            println!("O número {} é ímpar.", contador);
+        }
+
+        if contador &gt;= 10 { 
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>05 - Inicialize uma variável mutável do tipo f32 com 0.0. Em um loop, adicione 0.5 a essa variável em cada iteração. Imprima o valor em cada passo e pare o loop quando o valor for maior ou igual a 5.0.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: f32 = 0.0; 
+
+    loop {
+        contador += 0.5; 
+        println!("{}", contador);
+
+        if contador &gt;= 5.0 { 
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>06 - Crie um jogo baseado em turnos entre jogador e monstro:</p>
+<p>HP: 100 <br>
+Ataque: 10 <br>
+Defesa: 10</p>
+<ul>
+<li>Ataque do Jogador e Ataque do Monstro: Dano duplo para ambos</li>
+<li>Ataque do Jogador e Defesa do Monstro: Jogador recebe metade do dano e monstro não recebe dano</li>
+<li>Defesa do Jogador e Ataque do Monstro: Jogador não recebe dano e monstro recebe metade do dano</li>
+<li>Defesa do Jogador e Defesa do Monstro: Ambos bloqueiam</li>
+</ul>
+<p>Usando apenas loop, if/else/else if e rand (SystemTime, UNIX_EPOCH)</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+const DANO: i8 = 10;
 
 fn main() {
-    let variavel_imutavel = 200;
-    println!("Constante: {}, Variável: {}", CONSTANTE_GLOBAL, variavel_imutavel);
-
-    // Constantes:
-    // - Sempre imutáveis: 'mut' não é permitido de forma alguma (nem como tentativa);
-    // - Tipo explícito obrigatório (ex: : i32);
-    // - Avaliadas em tempo de compilação;
-    // - Podem ser declaradas em escopo global (fora de funções).
     
-    // Variáveis Imutáveis (let):
-    // - Podem ser tornadas mutáveis com 'mut';
-    // - O tipo pode ser inferido;
-    // - Locais ao seu escopo;
-    // - Podem ser definidas como o resultado de qualquer expressão.
-}</code></pre>
-</details>
-<p>18 - Como você usaria a macro format! para criar a string “O valor é: 42” a partir do número 42?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=8369e2438b56bc2abda06aff8bc3c285">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let numero = 42;
-    let numero_formatado = format!("O valor é: {}", numero);
-    println!("{}", numero_formatado);
-}</code></pre>
-</details>
-<p>19 - Como você pode formatar o número “7” para que ele seja exibido como “0007” usando format!?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=b9fb3b5c41ed8919cabd2aecd712f4e3">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let numero = 7;
-    let numero_formatado = format!("{:04}", numero);
-    println!("{}", numero_formatado);
-}</code></pre>
-</details>
-<p>20 - Como você formataria um número de ponto flutuante para mostrar exatamente 2 casas decimais?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=f7731cabfc66bf0003f674f81c79d382">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let pi = 3.14159265359;
-    println!("Pi: {:.2}", pi);
+    let mut vida_jogador: i8 = 100; 
+    let mut vida_monstro: i8 = 100; 
 
-    let pi_formatado = format!("{:.2}", pi);
-    println!("Pi: {}", pi_formatado);    
-}</code></pre>
-</details>
-<p>21 - Demonstre como usar argumentos posicionais em format strings.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=cd343f4c9020844b7b181f431570417f">Playground!</a></p>
-<details>
-<summary>Resposta</summary>
-<pre class="playground"><code class="language-rust">fn main() {
-    let nome = "Snoopy";
-    let idade = 8;
-    let cidade = "Califórnia";
+    let mut rodada = 0; 
+
+    println!("--- Início do Jogo ---");
+    println!("Jogador vs Monstro");
+    println!("");
     
-    // Argumentos posicionais
-    println!("{0} tem {1} anos e mora na {2}", nome, idade, cidade);
+    loop {
+        rodada += 1;
+
+        println!("---- Estatísticas ----");
+        println!(
+            "Jogador:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+            vida_jogador 
+        );
+        println!(
+            "Monstro:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+            vida_monstro 
+        );
+
+        println!("--- Jogador ---");
+        println!("[1] Atacar!\n[2] Defender\n");
+
+        let mut entrada_selecao_jogador: String = String::new(); 
+        io::stdin()
+            .read_line(&amp;mut entrada_selecao_jogador)
+            .expect("Erro ao inserir dados!"); 
+        let selecao_jogador: i8 = entrada_selecao_jogador 
+            .trim()
+            .parse()
+            .expect("Erro ao converter dados!"); 
+        
+        let entrada_selecao_monstro = SystemTime::now() 
+            .duration_since(UNIX_EPOCH)
+            .expect("Erro de tempo!") 
+            .as_nanos();
+        
+        let selecao_monstro = (entrada_selecao_monstro % 2 + 1) as i8; 
+
+        if selecao_jogador == 1 &amp;&amp; selecao_monstro == 1 {
+            vida_jogador = vida_jogador - (DANO * 2);
+            vida_monstro = vida_monstro - (DANO * 2);
+            println!("---- Rodada {} ----", rodada);
+            println!("Jogador: Atacar\nMonstro: Atacar\n");
+            println!("*** DANO DUPLO! ***\n"); 
+        } else if selecao_jogador == 1 &amp;&amp; selecao_monstro == 2 {
+            vida_jogador = vida_jogador - (DANO / 2);
+            println!("---- Rodada {} ----", rodada);
+            println!("Jogador: Atacar\nMonstro: Defender\n");
+            println!("*** JOGADOR BLOQUEADO! ***\n"); 
+        } else if selecao_jogador == 2 &amp;&amp; selecao_monstro == 1 {
+            vida_monstro = vida_monstro - (DANO / 2);
+            println!("---- Rodada {} ----", rodada);
+            println!("Jogador: Defender\nMonstro: Atacar\n");
+            println!("*** MONSTRO BLOQUEADO! ***\n"); 
+        } else if selecao_jogador == 2 &amp;&amp; selecao_monstro == 2 {
+            vida_jogador = vida_jogador - (DANO * 2);
+            vida_monstro = vida_monstro - (DANO * 2);
+            println!("---- Rodada {} ----", rodada);
+            println!("Jogador: Defender\nMonstro: Defender\n");
+            println!("*** BLOQUEIO DUPLO! ***\n");
+        }
+
+        if vida_jogador &lt;= 0 {
+            println!("---- Estatísticas Finais ----");
+            println!(
+                "Jogador:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+                vida_jogador
+            );
+            println!(
+                "Monstro:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+                vida_monstro
+            );
+            println!("--- Jogador ---\n*** VOCÊ PERDEU! ***");
+            break;
+        }
+        if vida_monstro &lt;= 0 {
+            println!("---- Estatísticas Finais ----");
+            println!(
+                "Jogador:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+                vida_jogador
+            );
+            println!(
+                "Monstro:\n HP: {}\n Dano: 10\n Defesa: 10\n",
+                vida_monstro
+            );
+            println!("--- Jogador ---\n*** VOCÊ VENCEU! ***"); 
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>07 - Crie um contador que comece de 1 e avance. Dentro de um loop, verifique as seguintes condições:</p>
+<ul>
+<li>Se o número for divisível por 3 e 5, imprima “FizzBuzz”;</li>
+<li>Se for divisível apenas por 3, imprima “Fizz”;</li>
+<li>Se for divisível apenas por 5, imprima “Buzz”;</li>
+<li>Caso contrário, imprima o número;</li>
+<li>Pare o loop quando o contador chegar a 100.</li>
+</ul>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    println!("Contando de 1 .. 100!");
+    let mut contador: u8 = 0;
+
+    loop {
+        contador += 1;
+
+        if contador % 3 == 0 &amp;&amp; contador % 5 == 0 {
+            println!("FizzBuzz");
+
+        } else if contador % 3 == 0 {
+            println!("Fizz");
+
+        } else if contador % 5 == 0 {
+            println!("Buzz");
+
+        } else {
+            println!("{}", contador);
+        }
+
+        if contador &gt;= 100 {
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>08 - Comece com capital = 1000.0 e a meta = 2000.0. A cada ano (iteração do loop), o capital aumenta em 7% (capital *= 1.07;). O loop deve contar quantos anos leva para o capital atingir ou exceder a meta. Quando a meta for atingida, o loop deve parar, retornando o número de anos. Imprima o resultado.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {  
+    let mut capital: f32 = 1000.0; 
+    let mut ano: u8 = 0; 
+
+    loop {
+        capital *= 1.07; 
+        ano += 1;
+        println!("Capital = {} e Ano = {}", capital, ano); 
+
+        if capital &gt;= 2000.0 {
+            println!("Capital final = {}", capital);
+            println!("Anos necessários = {}", ano);
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>09 - Crie um loop que comece com o caractere ‘a’ e imprima cada caractere até ‘f’. Use uma variável mutável do tipo char e incremente-a. Para incrementar, você pode converter o char para u8, adicionar 1 e converter de volta para char. Pare quando o caractere for maior que ‘f’.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut caractere_atual: char = 'a'; 
+    println!("-- Início --"); 
+
+    loop {
+        println!("Caractere: {}", caractere_atual); 
+        let valor_inicial_char = caractere_atual as u8; 
+        let proximo_valor_char = valor_inicial_char + 1;      
+        caractere_atual = proximo_valor_char as char; 
+
+        if caractere_atual &gt; 'f' {
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>10 - Declare uma tupla mutável let mut data = (0, false);. Crie um loop que incremente o primeiro elemento da tupla em 1 a cada iteração. Quando o primeiro elemento atingir o valor 5, altere o segundo elemento para true e pare o loop. Imprima a tupla final fora do loop.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut estado: (u8, bool) = (0, false); 
+
+    loop {
+        println!("{:?}", estado);
+        estado.0 += 1; 
+
+        if estado.0 &gt; 5 {
+            estado.1 = true; 
+            println!("{:?}", estado);
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>11 - Crie uma tupla chamada person com os valores (Person, 0, 0.0). Em seguida, altere seus dados 3 vezes usando um loop, solicitando ao usuário o nome, idade e altura, e imprima os valores.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut pessoa: (String, u8, f32) = ("Pessoa".to_string(), 0, 0.0);
+    println!("{:#?}", pessoa);
+
+    let mut quantidade: u8 = 0; 
+
+    loop {
+        println!("Qual é o seu nome?"); 
+        let mut entrada_nome: String = String::new(); 
+        io::stdin()
+            .read_line(&amp;mut entrada_nome)
+            .expect("Erro ao inserir dados!"); 
+        let nome: String = entrada_nome.trim().to_string(); 
+
+        println!("Qual é a sua idade?"); 
+        let mut entrada_idade: String = String::new(); 
+        io::stdin()
+            .read_line(&amp;mut entrada_idade)
+            .expect("Erro ao inserir dados!");
+        let idade: u8 = entrada_idade.trim().parse().expect("Erro ao converter dados!"); 
+
+        println!("Qual é a sua altura?"); 
+        let mut entrada_altura: String = String::new(); 
+        io::stdin()
+            .read_line(&amp;mut entrada_altura)
+            .expect("Erro ao inserir dados!");
+        let altura: f32 = entrada_altura.trim().parse().expect("Erro ao converter dados!"); 
+
+        quantidade += 1;
+
+        pessoa = (nome, idade, altura);
+        println!("{:#?}", pessoa);
+
+        if quantidade &gt;= 3 { 
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>12 - Use um loop para exibir os elementos do seguinte array: [u8; 5] = [10, 20, 30, 40, 50]</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+
+    let array_inicial: [u8; 5] = [10, 20, 30, 40, 50];   
+    let mut indice = 0; 
+
+    loop {
+        if indice &gt;= array_inicial.len() {
+            break;
+        }
+
+        println!("{}", array_inicial[indice]);
+        indice += 1;
+    }
+}</code></pre>
+</details>
+<p>13 - Use um loop para exibir os elementos na ordem inversa do seguinte array: [u8; 5] = [1, 2, 3, 4, 5]</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+
+    let array_inicial: [u8; 5] = [1, 2, 3, 4, 5];
     
-    // Argumentos nomeados
-    println!("{nome} tem {idade} anos e mora na {cidade}");
-             
-    // Misturado
-    println!("{} tem {idade} anos e mora na {cidade}", nome);
+    let mut indice = array_inicial.len() - 1; 
+
+    loop {
+        if indice &lt;= 0 {
+            println!("{}", array_inicial[indice]);
+            break;
+        }
+
+        println!("{}", array_inicial[indice]); 
+        indice -= 1;
+    }
 }</code></pre>
 </details>
-<p>22 - O que é <em>shadowing</em> em Rust? Explique com um exemplo de código e qual seria a saída.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=f482540cb33e01d48f2a776d37773d87">Playground!</a></p>
+<p>14 - Você poderia criar um código para imprimir os quatro arrays a seguir: [u8; 2] = [1, 2];, [f32; 3] = [2.5, 7.3, 9.2];, [char; 4] = [‘A’, ‘B’, ‘C’, ‘D’]; e [&amp;str; 5] = [“Ana”, “Bruno”, “Carla”, “Daniel”, “Elza”];</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
 <pre class="playground"><code class="language-rust">fn main() {
-    let x = 5;
-    println!("Primeiro x: {}", x);
+    let array_int_inicial: [u8; 2] = [1, 2];
+    let array_float_inicial: [f32; 3] = [2.5, 7.3, 9.2];
+    let array_char_inicial: [char; 4] = ['A', 'B', 'C', 'D'];
+    let array_str_inicial: [&amp;str; 5] = ["Ana", "Bruno", "Carla", "Daniel", "Elza"];
 
-    let x = x + 1;
-    println!("Segundo x: {}", x);
+    let mut indice = 0;
 
-    let x = x * 2;
-    println!("Terceiro x: {}", x);
+    loop {
+        if indice &gt;= array_int_inicial.len() {
+            break;
+        }
 
-    let x = "Olá";
-    println!("Quarto x: {}", x);
+        println!("{}", array_int_inicial[indice]);
+        indice += 1;
+    }
+    println!("");
+
+    indice = 0;
+   
+    loop {
+        if indice &gt;= array_float_inicial.len() {
+            break;
+        }
+
+        println!("{}", array_float_inicial[indice]);
+        indice += 1;
+    }
+    println!("");
+
+    indice = 0;
+   
+    loop {
+        if indice &gt;= array_char_inicial.len() {
+            break;
+        }
+
+        println!("{}", array_char_inicial[indice]);
+        indice += 1;
+    }
+    println!("");
+
+    indice = 0;
+  
+    loop {
+        if indice &gt;= array_str_inicial.len() {
+            break;
+        }
+
+        println!("{}", array_str_inicial[indice]);
+        indice += 1;
+    }
 }</code></pre>
 </details>
-<p>23 - Qual será a saída do seguinte código?</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=7e38fa1f3187c185c9c24902bb40bb9d">Playground!</a></p>
-<pre class="playground"><code class="language-rust">fn main () {
-    let x = 5;
-    let x = x + 1;
-    {
-        let x = x * 2;
-        println!("O valor interno de x é: {}", x);
-    }
-    println!("O valor externo de x é: {}", x);
-}</code></pre>
+<p>15 - Crie um código que some os dados em um array usando um loop; aqui está o array: [u8; 4] = [1, 2, 4, 5]</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
 <pre class="playground"><code class="language-rust">fn main() {
-    let x = 5;
-    let x = x + 1; // x = 6
-    {
-        let x = x * 2; // x = 12 
-        println!("O valor interno de x é: {}", x); // Saida: 12
-    }
-    println!("O valor externo de x é: {}", x); // Saida: 6
+    let array_inicial: [u8; 4] = [1, 2, 4, 5]; 
+    let mut indice = 0;
+    let mut soma = 0;
+
+    loop { 
+        if indice &gt;= array_inicial.len() {
+            break;
+        }
+
+        println!("Valor = {:?}", array_inicial[indice]);
+        soma = soma + array_inicial[indice];
+        indice += 1;
+    }      
+    println!("Soma = {}", soma);
 }</code></pre>
 </details>
-<p>24 - Qual será a saída do seguinte código? Explique por quê.</p>
-<p><a href="https://play.rust-lang.org/?version=stable&amp;mode=debug&amp;edition=2024&amp;gist=59ac6475810ab64b4bf02825573cff00">Playground!</a></p>
-<pre class="playground"><code class="language-rust">fn main () {    
-    let a = 10;
-    {
-        let b = 20;
-        println!("Dentro do bloco: a = {}, b = {}", a, b);
-    }
-    println!("Fora do bloco: b = {}", b);
-}</code></pre>
+<p>16 - Declare um array mutável de 5 posições do tipo i32, inicializado com zeros: let mut my_array = [0; 5];. Use um loop e uma variável de índice para preencher o array com os valores [10, 20, 30, 40, 50]. O loop deve parar quando o array estiver completo. Imprima o array final.</p>
+<p><a href="">Playground!</a></p>
 <details>
 <summary>Resposta</summary>
 <pre class="playground"><code class="language-rust">fn main() {
-    let a = 10;
-    {
-        let b = 20;
-        println!("Dentro do bloco: a = {}, b = {}", a, b);
-        // Saida: Dentro do bloco: a = 10, b = 20
+    let mut array_preencher: [i32; 5] = [0; 5];
+    let mut indice = 0;
+
+    loop {
+        if indice &gt;= array_preencher.len() {
+            break;
+        }
+        array_preencher[indice] = (indice as i32 + 1) * 10;
+        indice += 1;
     }
-    // println!("Fora do bloco: b = {}", b);
-    // Erro: b não está no escopo
+    println!("Array = {:?}", array_preencher);
+}</code></pre>
+</details>
+<p>17 - Calcule o fatorial de 5 usando um loop. Você precisará de duas variáveis mutáveis: uma para o contador (de 1 a 5) e outra para armazenar o resultado do fatorial. Imprima o resultado final.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 1; 
+    let mut fatorial: u8 = 1; 
+
+    loop {
+        println!("Fatorial Parcial = {}", fatorial); 
+
+        fatorial *= contador;
+        contador += 1;
+
+        if contador &gt; 5 { 
+            break;
+        }
+    }
+    println!("Resultado do Fatorial = {}", fatorial);
+}</code></pre>
+</details>
+<p>18 - Comece com uma variável number igual a 123. Em um loop, divida o número por 2 e imprima o resultado da divisão e o resto (%). Continue o loop até que o número seja menor que 1.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut numero: f32 = 123.0; 
+
+    loop {
+        let divisao = numero / 2.0; 
+        let resto = numero % 2.0;
+
+        numero = divisao; 
+        println!("123 / 2 = {:.2}\n123 % 2 = {:.2}\n", divisao, resto);
+
+        if numero &lt; 1.0 { 
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>19 - Dentro de um loop, calcule e imprima o resultado da expressão 5 + counter * 2, onde counter é uma variável que começa em 0 e é incrementada em cada iteração. Use parênteses para alterar a precedência e calcule (5 + counter) * 2 em uma segunda impressão. Pare o loop quando o contador chegar a 5.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 0; 
+
+    loop {
+        println!(
+            "Contador = {} | 5 + contador * 2 = {}", 
+            contador, 
+            5 + contador * 2
+        );
+        
+        println!(
+            "Contador = {} | (5 + contador) * 2 = {}", 
+            contador, 
+            (5 + contador) * 2
+        );
+
+        contador += 1;        
+        if contador &gt; 5 {
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>20 - Defina uma constante NUMERO_SECRETO: u8 = 42;. Crie um loop que simule tentativas de adivinhação. Uma variável de tentativa deve ser incrementada em cada iteração. Use if/else if/else para imprimir “Muito Baixo”, “Muito Alto” ou “Você acertou!” quando a tentativa for igual ao NUMERO_SECRETO. Pare o loop (break) quando você adivinhar corretamente.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+const NUMERO_SECRETO: u8 = 42;
+
+fn main() {
+    println!("------- Início -------");
+    println!("Jogador 1 VS Computador");
+    println!("");
+    println!("---------------------");
+    println!("Você tem 3 tentativas!");
+
+    let mut tentativas: u8 = 0;
+
+    loop {
+        println!("\nInsira um número:");
+        
+        let mut entrada_numero: String = String::new();
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro ao inserir dados!");
+            
+        let numero_jogador: u8 = entrada_numero 
+            .trim()
+            .parse()
+            .expect("Erro ao converter dados!");
+
+        if numero_jogador &gt; NUMERO_SECRETO {
+            println!("Muito Alto!"); 
+        } else if numero_jogador &lt; NUMERO_SECRETO {
+            println!("Muito Baixo!"); 
+        } else {
+            println!("\nVocê Venceu!"); 
+            break;
+        }
+
+        tentativas += 1;
+        if tentativas == 1 {
+            println!("Você tem 2 tentativas restantes!"); 
+        } else if tentativas == 2 {
+            println!("Você tem 1 tentativa restante!");
+        } else if tentativas == 3 {
+            println!("VOCÊ PERDEU!");
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>21 - Faça uma contagem regressiva de 10 a 1. Use um loop e a macro format! para imprimir mensagens como:“Contagem Regressiva: 10”, “Contagem Regressiva: 9”, etc. Quando o contador chegar a 0, imprima “Lançamento!” e pare o loop.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    println!("-- Início --");
+    let mut contador: i8 = 10; 
+
+    loop {
+        println!("Contagem Regressiva: {}", contador);
+        contador -= 1; 
+        if contador &lt; 1 { 
+            println!("Lançamento!");
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>22 - Declare um array mutável de 10 posições ([0; 10]). Use um loop com um contador para preenchê-lo. Se o índice do array for par, preencha-o com o próprio valor do índice. Se for ímpar, preencha-o com o dobro do valor do índice. Pare o loop quando o array estiver completo.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut array_preencher: [i8; 10] = [0; 10];   
+    let mut indice = 0; 
+
+    loop {
+        if indice &gt;= array_preencher.len() {
+            break;
+        }
+
+        if indice % 2 == 0 {
+            array_preencher[indice] = indice as i8;
+        } else {
+            array_preencher[indice] = indice as i8 * 2;
+        }
+
+        println!("Array = {:?}", array_preencher);
+        indice += 1;
+    }
 }</code></pre>
 </details>
 
@@ -478,11 +832,11 @@ fn main() {
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../01-common-programming-concepts/scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../05-control-flow/loop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../02-data-structures/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../05-control-flow/while.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -492,11 +846,11 @@ fn main() {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../01-common-programming-concepts/scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../05-control-flow/loop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../02-data-structures/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../05-control-flow/while.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
