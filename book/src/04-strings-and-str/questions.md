@@ -495,3 +495,24 @@ fn main() {
 }
 ```
 </details>
+
+24 - Escreva um código que receba uma frase e a converta inteiramente para maiúsculas usando o método to_uppercase().
+
+[Playground!](https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=60f12762b72555308d35b34af0cda83c)
+
+<details>
+<summary>Resposta</summary>
+
+```rust
+use std::io;
+
+fn main() {
+    println!("Entre com uma frase:");
+    let mut entrada_frase: String = String::new();
+    io::stdin().read_line(&mut entrada_frase).err();
+
+    let maiuscula = entrada_frase.trim().to_uppercase();
+    println!("{}", maiuscula);
+}
+```
+</details>

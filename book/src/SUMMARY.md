@@ -3,12 +3,14 @@
 * [A Linguagem de Programação Rust](README.md)
     * [Prefácio](foreword.md)
     * [Introdução](introduction.md)
+
 * [Começando](00-enviroment-setup/README.md)
     * [Rust Playground](00-enviroment-setup/rust-playground.md)
     * [Instalar](00-enviroment-setup/installing-rust-and-cargo.md)
     * [Versão](00-enviroment-setup/version-rust-and-cargo.md) 
     * [Desinstalar](00-enviroment-setup/uninstall-rust.md)
     * [Editores e IDEs](00-enviroment-setup/editors-and-ides.md)  
+
 * [Conceitos Comuns de Programação](01-common-programming-concepts/README.md)
     * [Comentários](01-common-programming-concepts/comments.md)
     * [Print](01-common-programming-concepts/print.md)
@@ -21,6 +23,7 @@
     * [Shadowing](01-common-programming-concepts/shadowing.md)
     * [Escopo](01-common-programming-concepts/scope.md)
     * [Questões](01-common-programming-concepts/questions.md)
+
 * [Tipos de Dados](02-data-structures/README.md)
     * [u - inteiros](02-data-structures/u-integers.md)
     * [i - inteiros](02-data-structures/i-integers.md)
@@ -33,6 +36,7 @@
     * [Arrays](02-data-structures/arrays.md)
     * [Modificando Arrays](02-data-structures/modifying-arrays.md)
     * [Questões](02-data-structures/questions.md)
+
 * [Operadores](03-operators/README.md)
     * [Operadores Aritméticos](03-operators/arithmetic-operators.md)
     * [Operadores de Atribuição](03-operators/assignment-operators.md)
@@ -43,6 +47,7 @@
     * [Tuplas](03-operators/tuples.md)
     * [Arrays](03-operators/array.md)
     * [Questões](03-operators/questions.md)
+
 * [String e &str](04-strings-and-str/README.md)
     * [Strings](04-strings-and-str/string.md)
     * [&str](04-strings-and-str/str.md)
@@ -50,3 +55,17 @@
     * [Métodos - Parte 2](04-strings-and-str/methods-part2.md)
     * [Entrada de Dados](04-strings-and-str/data-entry.md)
     * [Questões](04-strings-and-str/questions.md)  
+
+* [Controle de Fluxo](05-control-flow/README.md)
+    * [If](05-control-flow/if.md)
+    * [Else](05-control-flow/else.md)
+    * [Else if](05-control-flow/else-if.md)
+    * [Questões - If e Else](05-control-flow/questions-if-and-else.md)
+    * [Loop](05-control-flow/loop.md)
+    * [Questões - Loop](05-control-flow/questions-loop.md)
+    * [While](05-control-flow/while.md)
+    * [Questões - While](05-control-flow/questions-while.md)
+    * [For](05-control-flow/for.md)
+    * [Questões - For](05-control-flow/questions-for.md)
+    * [Match](05-control-flow/match.md)
+    * [Questões - Match](05-control-flow/questions-match.md)
