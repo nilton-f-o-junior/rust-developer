@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Modificando Arrays - Rust v1.9 - Book</title>
+        <title>Controle de Fluxo - Rust v1.9 - Book</title>
 
 
         <!-- Custom HTML head -->
@@ -177,57 +177,19 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="modificando-arrays"><a class="header" href="#modificando-arrays">Modificando Arrays</a></h1>
-<p>Ao alterar valores de array, você precisa especificar o índice do elemento que deseja modificar. Os índices do array começam em 0 e correspondem à posição de cada elemento:</p>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>//                0   1   2   3   4
-let mut scores = [40, 50, 60, 70, 80];
-
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}\n", scores[2]);
-
-scores[0] = 10;
-scores[1] = 20;
-scores[2] = 30;
-
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}", scores[2]);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut numero: [i32; 5] = [1, 2, 3, 4, 5];
-println!("{:#?}", numero);
-
-numero[0] = 10;
-numero[2] = 30;
-numero[4] = 50;
-
-println!("{:#?}", numero);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut nomes: [&amp;str; 3] = ["Cecília", "Maite", "Helena"];
-println!("{:#?}", nomes);
-
-nomes[0] = "Gael";
-nomes[1] = "Theo";
-nomes[2] = "Rafael";
-
-println!("{:#?}", nomes);
-<span class="boring">}</span></code></pre>
+                        <h1 id="controle-de-fluxo"><a class="header" href="#controle-de-fluxo">Controle de Fluxo</a></h1>
+<p>Este capítulo aborda as estruturas de fluxo de controle do Rust, começaremos com as declarações condicionais: <code>if</code>, <code>else</code>, <code>else-if</code>, depois abordaremos sobre <code>loops</code>, <code>while</code> e <code>for</code> para iterar sobre coleções. Por fim abordaremos sobre <code>match</code>, recurso de <em>pattern matching</em> que lida com condições complexas com precisão e segurança.</p>
+<p>Cada seção inclui perguntas práticas para reforçar sua compreensão sobre os assuntos, como essa parte é um pouco mais complexa estarei separando as questões.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../02-data-structures/arrays.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../04-strings-and-str/questions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../02-data-structures/questions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../05-control-flow/if.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -237,11 +199,11 @@ println!("{:#?}", nomes);
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../02-data-structures/arrays.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../04-strings-and-str/questions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../02-data-structures/questions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../05-control-flow/if.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

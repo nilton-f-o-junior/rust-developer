@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Modificando Arrays - Rust v1.9 - Book</title>
+        <title>Questões - For - Rust v1.9 - Book</title>
 
 
         <!-- Custom HTML head -->
@@ -177,57 +177,464 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="modificando-arrays"><a class="header" href="#modificando-arrays">Modificando Arrays</a></h1>
-<p>Ao alterar valores de array, você precisa especificar o índice do elemento que deseja modificar. Os índices do array começam em 0 e correspondem à posição de cada elemento:</p>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>//                0   1   2   3   4
-let mut scores = [40, 50, 60, 70, 80];
+                        <h1 id="questões---for"><a class="header" href="#questões---for">Questões - for</a></h1>
+<hr>
+<p>01 - Escreva um programa que imprime os números de 1 a 10 usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    for i in 1..=10 {
+        println!("{}", i);
+    }
+}</code></pre>
+</details>
+<p>02 - Crie um programa que calcula a soma dos números de 1 a 100 usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut soma: u16 = 0;
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}\n", scores[2]);
+    for i in 1..=100 {
+        soma += i;
+        println!("{}", i);
+        println!("{}", soma);
+        println!();
+    }
 
-scores[0] = 10;
-scores[1] = 20;
-scores[2] = 30;
+    println!("{}", soma);
+}</code></pre>
+</details>
+<p>03 - Desenvolva um programa que imprime todos os números pares de 0 a 20 usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    for i in 0..=20 {
+        if i % 2 == 0 {
+            println!("{}", i);
+        }
+    }
+}</code></pre>
+</details>
+<p>04 - Escreva um programa que imprime todos os números em binário até o número solicitado inserido.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}", scores[2]);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut numero: [i32; 5] = [1, 2, 3, 4, 5];
-println!("{:#?}", numero);
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin().read_line(&amp;mut entrada_numero).err();
+    let numero_limite: i16 = entrada_numero.trim().parse().expect("");
 
-numero[0] = 10;
-numero[2] = 30;
-numero[4] = 50;
+    println!("");
+    for i in 0..=numero_limite {
+        println!("Número: {:02} = {:b}", i, i);
+    }
+}</code></pre>
+</details>
+<p>05 - Desenvolva um programa que gera todas as combinações possíveis de dois dígitos (00 a 99) usando laços for aninhados.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    for i in 0..=100 {
+        println!("{:02}", i);
+    }
+}</code></pre>
+<pre class="playground"><code class="language-rust">fn main() {
+    for i in 0..=100 {
+        if i &lt; 10 {
+            println!("0{}", i)
+        } else {
+            println!("{}", i);
+        }
+    }
+}</code></pre>
+</details>
+<p>06 - Escreva um programa que imprime a multiplicação de um número fornecido pelo usuário (de 1 a 10) usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
 
-println!("{:#?}", numero);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut nomes: [&amp;str; 3] = ["Cecília", "Maite", "Helena"];
-println!("{:#?}", nomes);
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
 
-nomes[0] = "Gael";
-nomes[1] = "Theo";
-nomes[2] = "Rafael";
+    let numero_base: i16 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    println!();
 
-println!("{:#?}", nomes);
-<span class="boring">}</span></code></pre>
+    for i in 1..=10 {
+        let resultado: i16 = numero_base * i;
+        println!("{} x {} = {}", numero_base, i, resultado);
+    }
+}</code></pre>
+</details>
+<p>07 - Crie um programa que inverte uma string fornecida pelo usuário usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um texto:");
+
+    let mut entrada_texto: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_texto)
+        .expect("Erro na entrada de dados!");
+
+    let texto_original: String = entrada_texto.trim().to_string();
+    let mut texto_invertido = String::new();
+
+    for i in texto_original.chars().rev() {
+        texto_invertido.push(i);
+        println!("{}", texto_invertido);
+    }
+
+    println!("\n{}", texto_invertido);
+}</code></pre>
+</details>
+<p>08 - Crie um programa que calcula a soma dos dígitos de um inteiro usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin().read_line(&amp;mut entrada_numero).err();
+
+    let mut soma_resultado: i16 = 0;
+
+    for i in entrada_numero.trim().chars() {
+        let digito_convertido: i16 = i.to_string().parse().expect("Erro na conversão de dados!");
+        soma_resultado += digito_convertido;
+    }
+
+    println!("{}", soma_resultado);
+}</code></pre>
+</details>
+<p>09 - Desenvolva um programa que conta quantas vogais (a, e, i, o, u) estão em uma string usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um texto:");
+
+    let mut entrada_texto: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_texto)
+        .expect("Erro na entrada de dados!");
+
+    let texto_minusculo: String = entrada_texto.trim().to_lowercase().to_string();
+    let mut qtd_vogais: u8 = 0;
+
+    for i in texto_minusculo.chars() {
+        if i == 'a' || i == 'e' || i == 'i' || i == 'o' || i == 'u' {
+            qtd_vogais += 1;
+        }
+    }
+    println!("Qtd. = {}", qtd_vogais);
+}</code></pre>
+</details>
+<p>10 - Escreva um programa que encontra o maior número em uma lista de números usando um laço for. Lista = [17, 43, 5, 54, 93]</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let array: [u8; 5] = [17, 43, 5, 54, 93];
+    let mut maior_numero: u8 = 0;
+
+    for (_i, j) in array.iter().enumerate() {
+        if *j &gt; maior_numero {
+            maior_numero = *j;
+        }
+    }
+    println!("{}", maior_numero);
+}</code></pre>
+</details>
+<p>11 - Crie um programa que encontra o menor número em uma lista de números usando um laço for. Lista = [63, 36, 57, 7, 82]</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let array: [u8; 5] = [63, 36, 57, 7, 82];
+    let mut menor_numero: u8 = array[1];
+
+    for (_i, j) in array.iter().enumerate() {
+        if *j &lt; menor_numero {
+            menor_numero = *j;
+        }
+    }
+    println!("{}", menor_numero);
+}</code></pre>
+</details>
+<p>12 - Desenvolva um programa que calcula o fatorial de um inteiro positivo fornecido pelo usuário usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
+
+    let numero_limite: u8 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    let mut fatorial: u8 = 1;
+
+    for i in 1..=numero_limite {
+        fatorial *= i;
+        println!("Fatorial Parcial = {}", fatorial);
+    }
+}</code></pre>
+</details>
+<p>13 - Escreva um programa que imprime os elementos de uma lista em ordem inversa usando um laço for. Lista = [1, 2, 3, 4, 5];</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let arr: [u8; 5] = [1, 2, 3, 4, 5];
+
+    for i in arr.iter().rev() {
+        println!("{:#?}", i);
+    }
+}</code></pre>
+</details>
+<p>14 - Crie um programa que verifica se uma palavra é um palíndromo (lê-se da mesma forma de frente para trás e de trás para frente) usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira uma palavra:");
+
+    let mut entrada_palavra: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_palavra)
+        .expect("Erro na entrada de dados!");
+
+    let palavra_original: String = entrada_palavra.trim().to_lowercase().to_string();
+    let mut palavra_invertida: String = String::new();
+
+    for i in palavra_original.chars().rev() {
+        palavra_invertida.push(i);
+    }
+
+    if palavra_original == palavra_invertida {
+        println!("A palavra {} é um palíndromo!", palavra_original)
+    } else {
+        println!("A palavra {} não é um palíndromo!", palavra_original);
+    }
+}</code></pre>
+</details>
+<p>15 - Escreva um programa que conta quantas vezes um caractere específico aparece em uma string usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira uma palavra:");
+
+    let mut entrada_palavra: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_palavra)
+        .expect("Erro na entrada de dados!");
+
+    let palavra_base: String = entrada_palavra.trim().to_lowercase().to_string();
+
+    println!("\nInsira o caractere de busca: ");
+
+    let mut entrada_caractere: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_caractere)
+        .expect("Erro na entrada de dados!");
+
+    let caractere_busca: char = entrada_caractere.trim().parse().expect("Erro na entrada de dados!");
+
+    let mut contagem: u8 = 0;
+
+    for i in palavra_base.chars() {
+        if i == caractere_busca {
+            contagem += 1;
+        }
+    }
+
+    if contagem &gt;= 1 {
+        println!("\nA letra '{}' se repete '{}' vezes!", caractere_busca, contagem);
+    } else {
+        println!("\nA letra '{}' não se repete.", caractere_busca);
+    }
+}</code></pre>
+</details>
+<p>16 - Crie um programa que calcula o produto de todos os números em uma lista usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let arr: [u8; 5] = [1, 2, 3, 4, 5];
+    let mut mult: u8 = 1;
+
+    for i in arr.iter() {
+        mult *= i;
+        println!("Stage {:?} = {:?}", i, mult);
+    }
+}</code></pre>
+</details>
+<p>17 - Escreva um programa que recebe 5 valores inteiros, inseridos pelo usuário, usando um array e for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut array_entrada: [i8; 5] = [0; 5];
+
+    for i in 0..array_entrada.len() {
+        println!("\nInsira o número para a posição {}:", i);
+        let mut entrada_numero: String = String::new();
+        io::stdin().read_line(&amp;mut entrada_numero).expect("Erro ao ler dados!");
+        array_entrada[i] = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    }
+
+    println!("\nArray preenchido: {:?}", array_entrada);
+}</code></pre>
+</details>
+<p>18 - Desenvolva um programa que encontra a média de uma lista de números usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut array_numeros: [i8; 10] = [0; 10];
+    let mut soma: u8 = 0;
+
+    for i in 0..array_numeros.len() {
+
+        println!("Insira o número:");
+        let mut entrada_numero: String = String::new();
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro na entrada de dados!");
+        array_numeros[i] = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+
+        soma += array_numeros[i] as u8;
+    }
+
+    soma /= 10;
+    println!("Média = {}", soma);
+}</code></pre>
+</details>
+<p>19 - Desenvolva um programa que conta o número de números negativos em uma lista usando um laço for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira 5 números:");
+    let mut array_entrada: [i8; 5] = [0; 5];
+    let mut contagem: u8 = 0;
+
+    for i in 0..array_entrada.len() {
+
+        let mut entrada_numero: String = String::new();
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro na entrada de dados!");
+        array_entrada[i] = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+
+        if array_entrada[i] &lt; 0 {
+            contagem += 1;
+        }
+    }
+
+    println!("Contagem de números negativos = {}", contagem);
+}</code></pre>
+</details>
+<p>20 - Escreva um código que recebe 5 números inseridos pelo usuário e os adiciona a uma tupla vazia, verifica se há números pares e, se sim, os adiciona a outra lista vazia.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira 5 números:");
+    let mut array_entrada: [i8; 5] = [0; 5];
+    let mut array_pares: [i8; 5] = [0; 5];
+
+    for i in 0..array_entrada.len() {
+
+        let mut entrada_numero: String = String::new();
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro na entrada de dados!");
+        array_entrada[i] = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+
+        if array_entrada[i] % 2 == 0 {
+            array_pares[i] = array_entrada[i];
+        }
+    }
+
+    println!("\nArray de pares (ímpares são 0): {:?}", array_pares);
+}</code></pre>
+</details>
+<p>21 - Escreva um programa que recebe o nome e a idade de um usuário e os armazena em uma tupla usando for.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira o número de usuários que deseja adicionar:");
+    let mut entrada_contagem: String = String::new();
+    io::stdin().read_line(&amp;mut entrada_contagem).expect("Erro ao ler a contagem!");
+    let quantidade: u8 = entrada_contagem.trim().parse().expect("Erro na conversão de dados!");
+
+    let mut dados_usuario: (String, u8);
+
+    for _i in 0..quantidade {
+        println!("\nInsira o nome:");
+        let mut entrada_nome: String = String::new();
+        io::stdin().read_line(&amp;mut entrada_nome).expect("Erro ao ler o nome!");
+        let nome = entrada_nome;
+
+        println!("\nInsira a idade:");
+        let mut entrada_idade: String = String::new();
+        io::stdin().read_line(&amp;mut entrada_idade).expect("Erro ao ler a idade!");
+        let idade: u8 = entrada_idade.trim().parse().expect("Erro na conversão de dados!");
+
+        dados_usuario = (nome, idade);
+        println!("\nNome:{} Idade:{}", dados_usuario.0, dados_usuario.1);
+    }
+}</code></pre>
+</details>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../02-data-structures/arrays.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../05-control-flow/for.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../02-data-structures/questions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../05-control-flow/match.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -237,11 +644,11 @@ println!("{:#?}", nomes);
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../02-data-structures/arrays.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../05-control-flow/for.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../02-data-structures/questions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../05-control-flow/match.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

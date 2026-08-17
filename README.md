@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Status-Cap%C3%ADtulos%201--6-blue" alt="Status">
 </a>
 <a href="https://rust-v1-9-book.vercel.app/">
-  <img src="https://img.shields.io/badge/Atualizado-31%2F03%2F26-orange" alt="Última Atualização">
+  <img src="https://img.shields.io/badge/Atualizado-31%2F08%2F26-orange" alt="Última Atualização">
 </a>
 </p>
 
@@ -76,6 +76,20 @@ Acesse: https://rust-v1-9-book.vercel.app/
 - 6.5. Entrada de Dados
 - 6.6. Questões
 
+### 7. Controle de Fluxo
+- 7.1.  If
+- 7.2.  Else
+- 7.3.  Else if
+- 7.4.  Questões - If e Else
+- 7.5.  Loop
+- 7.6.  Questões - Loop
+- 7.7.  While
+- 7.8.  Questões - While
+- 7.9.  For
+- 7.10. Questões - For
+- 7.11. Match
+- 7.12. Questões - Match
+
 ## 🎯 Para Quem é Este Livro?
 
 - Desenvolvedores iniciantes que querem aprender Rust;
@@ -97,9 +111,3 @@ Sua contribuição é muito importante para este projeto! Você pode ajudar de v
 - [The Rust Programming Language](https://doc.rust-lang.org/book/) 
 
 ---
-
-## 📅 Ciclo de Atualizações
-
-Novos capítulos e conteúdos são publicados mensalmente, sempre no último dia de cada mês. Acompanhe o repositório para não perder as novidades e receber notificações de cada nova versão!
-
-> **Nota:** Este projeto está em desenvolvimento ativo. Seu feedback é fundamental para melhorar o conteúdo!

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Modificando Arrays - Rust v1.9 - Book</title>
+        <title>Questões - While - Rust v1.9 - Book</title>
 
 
         <!-- Custom HTML head -->
@@ -177,57 +177,417 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="modificando-arrays"><a class="header" href="#modificando-arrays">Modificando Arrays</a></h1>
-<p>Ao alterar valores de array, você precisa especificar o índice do elemento que deseja modificar. Os índices do array começam em 0 e correspondem à posição de cada elemento:</p>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>//                0   1   2   3   4
-let mut scores = [40, 50, 60, 70, 80];
+                        <h1 id="questões---while"><a class="header" href="#questões---while">Questões - While</a></h1>
+<hr>
+<p>01 - Escreva um programa em Rust que use um loop while para imprimir os números de 1 a 5, um por linha.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 1;
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}\n", scores[2]);
+    while contador &lt;= 5 { 
+        println!("Contador = {}", contador);
+        contador += 1;
+    }
+}</code></pre>
+</details>
+<p>02 - Usando um loop while, crie um programa que imprima uma contagem regressiva de 10 a 1 e, em seguida, a mensagem “Launch!” (Lançar!).</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 10; 
 
-scores[0] = 10;
-scores[1] = 20;
-scores[2] = 30;
+    while contador &gt;= 1 { 
+        println!("{}", contador);
+        contador -= 1;
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}", scores[2]);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut numero: [i32; 5] = [1, 2, 3, 4, 5];
-println!("{:#?}", numero);
+        if contador &lt; 1 { 
+            println!("Lançamento!");
+        }
+    }
+}</code></pre>
+</details>
+<p>03 - Escreva um programa que calcule a soma de todos os números inteiros de 1 a 100, usando um loop while. Imprima o resultado final.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut soma: u16 = 0;    
+    let mut contador: u8 = 1;
+    
+    while contador &lt;= 100 { 
+        soma += contador as u16; 
+        contador += 1; 
+    }
+    
+    println!("Soma = {}", soma);
+}</code></pre>
+</details>
+<p>04 - Crie um loop while que seja intencionalmente infinito, mas use a palavra-chave break para sair do loop quando um contador atingir o valor 7. Imprima o valor do contador em cada iteração antes de verificar a condição de saída.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 0;
 
-numero[0] = 10;
-numero[2] = 30;
-numero[4] = 50;
+    loop { 
+        contador += 1; 
+        println!("Contador = {}", contador);
 
-println!("{:#?}", numero);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut nomes: [&amp;str; 3] = ["Cecília", "Maite", "Helena"];
-println!("{:#?}", nomes);
+        if contador &gt;= 7 {
+            break; 
+        }
+    }
+}</code></pre>
+</details>
+<p>05 - Verifique se um determinado número (por exemplo, num = 32) é uma potência de 2 usando um loop while. Imprima true (verdadeiro) ou false (falso).</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
 
-nomes[0] = "Gael";
-nomes[1] = "Theo";
-nomes[2] = "Rafael";
+fn main() {
+    println!("Insira um número:");
+    
+    let mut entrada_numero: String = String::new(); 
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro de entrada de dados!"); 
 
-println!("{:#?}", nomes);
-<span class="boring">}</span></code></pre>
+    let mut numero: u16 = entrada_numero.trim().parse().expect("Erro na conversão de dados!"); 
+
+    if numero == 1 {
+        println!("{}", true); 
+    } else {
+        while numero % 2 == 0 {
+            numero /= 2;
+        }
+
+        if numero == 1 {
+            println!("{}", true);
+        } else {
+            println!("{}", false);
+        }
+    }
+}</code></pre>
+</details>
+<p>06 - Escreva um programa com um loop while que itere de 0 a 10. Se o número atual for ímpar, use continue para pular a impressão desse número. Imprima apenas os números pares.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u8 = 0; 
+    while contador &lt;= 10 { 
+        
+        if contador % 2 != 0 {
+            contador += 1; 
+            continue;
+        }
+
+        println!("Número par: {}", contador); 
+        contador += 1; 
+    }
+}</code></pre>
+</details>
+<p>07 - Escreva um programa que peça ao usuário para inserir um número maior que 10. Use um loop while para continuar pedindo a entrada até que um número válido seja fornecido.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut condicao: u8 = 0;  
+    while condicao &lt;= 10 { 
+        println!("Insira um número:");        
+        let mut entrada_numero: String = String::new();         
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro de entrada de dados!"); 
+            
+        let numero: u8 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+        println!("");
+
+        condicao = numero; 
+
+        if condicao &lt;= 10 {
+            println!("Número &lt;= 10.");
+            println!("Tente novamente!\n");
+        } else {
+            println!("Número &gt; 10!");
+        }
+    }
+}</code></pre>
+</details>
+<p>08 - Calcule o fatorial de um número (por exemplo, 5!) usando um loop while. Imprima o resultado.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new(); 
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro de entrada de dados!!");
+
+    let numero: u16 = entrada_numero.trim().parse().expect("Erro na conversão de dados!"); 
+
+    if numero == 0 {
+        println!("Fatorial: 0 = 1");
+    } else {
+
+        let mut fatorial: u16 = 1;
+        let mut i: u16 = 1;
+
+        while i &lt;= numero {
+            fatorial *= i;
+            i += 1;
+        }
+
+        println!("Fatorial: {} = {}", numero, fatorial);
+    }
+}</code></pre>
+</details>
+<p>09 - Dado um número inteiro (por exemplo, 12345), use um loop while para imprimi-lo ao contrário (ou seja, 54321). Dica: use os operadores % (módulo) e / (divisão).</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
+
+    let mut numero: u16 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    let numero_salvo = numero;
+    let mut numero_invertido: u16 = 0; 
+
+    if numero == 0 {
+        numero_invertido = numero;
+    } else {
+        while numero &gt; 0 {
+            let digito = numero % 10; 
+             numero_invertido = (numero_invertido * 10) + digito; 
+             numero /= 10;
+        }
+    }
+    println!("Número original: {}", numero_salvo);
+    println!("Número invertido: {}", numero_invertido);
+}</code></pre>
+</details>
+<p>10 - Escreva um programa que conte o número de dígitos em um número inteiro positivo usando um loop while. Por exemplo, 12345 tem 5 dígitos.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");     
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
+
+    let mut numero: u16 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    let numero_salvo: u16 = numero;
+    let mut contagem: u8 = 0;
+
+    if numero == 0 {
+        contagem = 1; 
+    } else {
+        while numero &gt; 0 {
+            numero /= 10;
+            contagem += 1;
+        }
+    }
+    println!("Contagem de dígitos de {} = {}", numero_salvo, contagem);
+}</code></pre>
+</details>
+<p>11 - Imprima os quadrados dos números de 1 a 7 usando um loop while.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut contador: u16 = 1;
+    while contador &lt;= 7 { 
+        let quadrado: u16 = contador * contador;
+        println!("Quadrado: {} = {}", contador, quadrado);
+        contador += 1; 
+    }
+}</code></pre>
+</details>
+<p>12 - Dado um número let mut num = 64;, use um loop while para dividi-lo repetidamente por 2 até que o resultado seja menor ou igual a 1. Imprima cada resultado da divisão.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut numero: u8 = 64; 
+    while numero &gt; 1 { 
+        numero /= 2; 
+        println!("Resultado = {}", numero); 
+    }
+}</code></pre>
+</details>
+<p>13 - Encontre e imprima o primeiro número par maior que 50 usando um loop while.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut numero: u8 = 51; 
+    while numero % 2 &gt; 0 { 
+        numero += 1;
+    }
+    println!("Resultado = {}", numero); 
+}</code></pre>
+</details>
+<p>14 - Crie um número secreto (por exemplo, secreto = 42). Peça ao usuário para adivinhar o número. Use um loop while para continuar o jogo até que o usuário adivinhe corretamente. Dê dicas (“muito alto”, “muito baixo”). (Requer std::io para entrada do usuário).</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let mut numero: u8 = 0;
+    let numero_secreto: u8 = 42; 
+
+    while numero != numero_secreto { 
+        println!("Insira um número:");
+        
+        let mut entrada_numero: String = String::new(); 
+        io::stdin()
+            .read_line(&amp;mut entrada_numero)
+            .expect("Erro na entrada de dados!");
+
+        numero = entrada_numero
+            .trim()
+            .parse()
+            .expect("Erro na conversão do número!");
+
+        if numero &gt; numero_secreto {
+            println!("Muito Alto!!!");
+        } else if numero &lt; numero_secreto {
+            println!("Muito Baixo!!!");
+        } else {
+            println!("VOCÊ VENCEU!");
+            break;
+        }
+    }
+}</code></pre>
+</details>
+<p>15 - Peça um número ao usuário e, usando um loop while, imprima os primeiros 5 múltiplos desse número.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
+
+    let numero_base: u8 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    let mut contador: u8 = 0;
+    let mut resultado: u8;
+    println!();
+
+    while contador &lt; 5 { 
+        contador += 1;
+        resultado = contador * numero_base;
+
+        println!("{}", resultado);
+    }
+}</code></pre>
+</details>
+<p>16 - Use loops while aninhados para imprimir um quadrado 3x3 de asteriscos.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira o número de linhas:");    
+    let mut entrada_linha: String = String::new(); 
+    io::stdin()
+        .read_line(&amp;mut entrada_linha)
+        .expect("Erro na entrada de dados!");
+
+    println!("Insira o número de colunas:"); 
+    let mut entrada_coluna: String = String::new(); 
+    io::stdin()
+        .read_line(&amp;mut entrada_coluna)
+        .expect("Erro na entrada de dados!");
+
+    let num_linhas: u8 = entrada_linha.trim().parse().expect("Erro na conversão de dados!"); 
+    let num_colunas: u8 = entrada_coluna.trim().parse().expect("Erro na conversão de dados!"); 
+    let simbolo: String = String::from("*");
+    let mut contador_linha: u8 = 0;
+    
+    while contador_linha &lt; num_linhas {      
+        let mut contador_coluna: u8 = 0; 
+        while contador_coluna &lt; num_colunas {
+            print!("{}", simbolo); 
+            contador_coluna += 1;
+        }
+        println!(); 
+        contador_linha += 1;
+    }
+}</code></pre>
+</details>
+<p>17 - Escreva um programa em Rust que solicite ao usuário a inserção de um número inteiro positivo. Em seguida, encontre e exiba os primeiros cinco divisores desse número. Se menos de cinco divisores forem encontrados, o programa deve informar que “Os primeiros 5 números múltiplos não foram encontrados!”.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um número:");
+    let mut entrada_numero: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_numero)
+        .expect("Erro na entrada de dados!");
+
+    let numero_base: u8 = entrada_numero.trim().parse().expect("Erro na conversão de dados!");
+    let mut candidato_divisor: u8 = 0;
+    let mut divisores_encontrados: u8 = 0;
+
+    while divisores_encontrados &lt; 5 {
+        candidato_divisor += 1;
+
+        if candidato_divisor == 0 {
+            continue;
+        }
+
+        if numero_base % candidato_divisor == 0 {
+            divisores_encontrados += 1;
+            println!("{} % {} = 0", numero_base, candidato_divisor);
+        }
+ 
+        if candidato_divisor &gt; numero_base &amp;&amp; divisores_encontrados &lt; 5 {
+            println!("Os primeiros 5 múltiplos não foram encontrados!");
+            break;
+        }
+    }
+}</code></pre>
+</details>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../02-data-structures/arrays.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../05-control-flow/while.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../02-data-structures/questions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../05-control-flow/for.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -237,11 +597,11 @@ println!("{:#?}", nomes);
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../02-data-structures/arrays.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../05-control-flow/while.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../02-data-structures/questions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../05-control-flow/for.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

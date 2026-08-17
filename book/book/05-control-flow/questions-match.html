@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Modificando Arrays - Rust v1.9 - Book</title>
+        <title>Questões - Match - Rust v1.9 - Book</title>
 
 
         <!-- Custom HTML head -->
@@ -177,59 +177,564 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="modificando-arrays"><a class="header" href="#modificando-arrays">Modificando Arrays</a></h1>
-<p>Ao alterar valores de array, você precisa especificar o índice do elemento que deseja modificar. Os índices do array começam em 0 e correspondem à posição de cada elemento:</p>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>//                0   1   2   3   4
-let mut scores = [40, 50, 60, 70, 80];
+                        <h1 id="questões---match"><a class="header" href="#questões---match">Questões - Match</a></h1>
+<hr>
+<p>01 - Escreva um programa que recebe um caractere e indica se é uma vogal (a, e, i, o, u) ou uma consoante. Use match para validar.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}\n", scores[2]);
+fn main() {
+    println!("Insira um caractere (a-z):");
 
-scores[0] = 10;
-scores[1] = 20;
-scores[2] = 30;
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na leitura da entrada!");
 
-println!("Score [0]: {}", scores[0]);
-println!("Score [1]: {}", scores[1]);
-println!("Score [2]: {}", scores[2]);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut numero: [i32; 5] = [1, 2, 3, 4, 5];
-println!("{:#?}", numero);
+    let caractere = entrada.trim();
 
-numero[0] = 10;
-numero[2] = 30;
-numero[4] = 50;
+    match caractere {
+        "a" | "e" | "i" | "o" | "u" =&gt; println!("O caractere '{}' é uma vogal!", caractere),
+        "" =&gt; println!("Nenhum caractere foi inserido!"),
+        _ =&gt; println!("O caractere '{}' é uma consoante!", caractere),
+    };
+}</code></pre>
+</details>
+<p>02 - Crie um programa que recebe uma nota (0 a 10) e a converte para um conceito.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Conceito</th><th>Notas</th></tr>
+</thead>
+<tbody>
+<tr><td>A</td><td>9 - 10</td></tr>
+<tr><td>B</td><td>7 - 8</td></tr>
+<tr><td>C</td><td>5 - 6</td></tr>
+<tr><td>D</td><td>3 - 4</td></tr>
+<tr><td>E</td><td>1 - 2</td></tr>
+<tr><td>F</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
 
-println!("{:#?}", numero);
-<span class="boring">}</span></code></pre>
-<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut nomes: [&amp;str; 3] = ["Cecília", "Maite", "Helena"];
-println!("{:#?}", nomes);
+fn main() {
+    println!("Insira sua nota (0 a 10):");
 
-nomes[0] = "Gael";
-nomes[1] = "Theo";
-nomes[2] = "Rafael";
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na leitura da entrada!");
 
-println!("{:#?}", nomes);
-<span class="boring">}</span></code></pre>
+    let nota: u8 = match entrada.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro: O dado inserido não é um número válido!");
+            return;
+        }
+    };
+
+    match nota {
+        9 | 10 =&gt; println!("Sua nota é: '{}' = 'A'", nota),
+        7 | 8 =&gt; println!("Sua nota é: '{}' = 'B'", nota),
+        5 | 6 =&gt; println!("Sua nota é: '{}' = 'C'", nota),
+        3 | 4 =&gt; println!("Sua nota é: '{}' = 'D'", nota),
+        1 | 2 =&gt; println!("Sua nota é: '{}' = 'E'", nota),
+        0 =&gt; println!("Sua nota é: '{}' = 'F'", nota),
+        _ =&gt; println!("A nota '{}' fornecida não é válida (fora do intervalo 0-10)!", nota),
+    };
+}</code></pre>
+</details>
+<p>03 - Insira uma idade e classifique-a como:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Idade</th><th>Classificação</th></tr>
+</thead>
+<tbody>
+<tr><td>0 - 12</td><td>Criança</td></tr>
+<tr><td>13 - 17</td><td>Adolescente</td></tr>
+<tr><td>18 - 59</td><td>Adulto</td></tr>
+<tr><td>+60</td><td>Idoso</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira sua idade:");
+
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na leitura da entrada!");
+
+    let idade: u8 = match entrada.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro: O dado inserido não é um número válido!");
+            return;
+        }
+    };
+
+    match idade {
+        0..=12 =&gt; println!("Criança!"),
+        13..=17 =&gt; println!("Adolescente!"),
+        18..=59 =&gt; println!("Adulto!"),
+        60..=120 =&gt; println!("Idoso!"),
+        _ =&gt; println!("Idade fora do limite de análise!"),
+    };
+}</code></pre>
+</details>
+<p>04 - Receba nome de usuário e senha. Use o pareamento de tuplas (tuple matching) para validar:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Entrada</th><th>Resultado</th></tr>
+</thead>
+<tbody>
+<tr><td>(“admin”, “1234”)</td><td>Admin logado</td></tr>
+<tr><td>(“user”, “pass”)</td><td>User logado</td></tr>
+<tr><td>_</td><td>Invalid credentials</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira usuário:");
+    let mut login = String::new();
+    io::stdin()
+        .read_line(&amp;mut login)
+        .expect("Erro na inserção de dados!");
+
+    println!("Insira senha:");
+    let mut password = String::new();
+    io::stdin()
+        .read_line(&amp;mut password)
+        .expect("Erro na inserção de dados!");
+
+    let data: (&amp;str, &amp;str) = (login.trim(), password.trim());
+
+    match data {
+        ("admin", "1234") =&gt; println!("\nAdmin logado!"),
+        ("user", "pass") =&gt; println!("\nUsuário logado!"),
+        _ =&gt; println!("\nCredenciais inválidas!"),
+    };
+}</code></pre>
+</details>
+<p>05 - Receba uma temperatura em Celsius e a classifique:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Faixa</th><th>Classificação</th></tr>
+</thead>
+<tbody>
+<tr><td>Abaixo - 0</td><td>Congelante</td></tr>
+<tr><td>0 - 15</td><td>Frio</td></tr>
+<tr><td>16 - 25</td><td>Agradável</td></tr>
+<tr><td>26 - 35</td><td>Quente</td></tr>
+<tr><td>Acima - 35</td><td>Muito Quente</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira a temperatura:");
+
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na inserção de dados!");
+
+    let temperatura: f32 = match entrada.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    match temperatura {
+        f32::MIN..=-1.0 =&gt; println!("Congelante"),
+        0.0..=15.0 =&gt; println!("Frio"),
+        16.0..=25.0 =&gt; println!("Agradável"),
+        26.0..=35.0 =&gt; println!("Quente"),
+        _ =&gt; println!("Muito Quente"),
+    };
+}</code></pre>
+</details>
+<p>06 - Receba um número de 1 a 7 e imprima o dia da semana correspondente.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Número</th><th>Dia da Semana</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Domingo</td></tr>
+<tr><td>2</td><td>Segunda-feira</td></tr>
+<tr><td>3</td><td>Terça-feira</td></tr>
+<tr><td>4</td><td>Quarta-feira</td></tr>
+<tr><td>5</td><td>Quinta-feira</td></tr>
+<tr><td>6</td><td>Sexta-feira</td></tr>
+<tr><td>7</td><td>Sábado</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira o número");
+
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na inserção de dados!");
+
+    let numero: u8 = match entrada.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    match numero {
+        1 =&gt; println!("Domingo"),
+        2 =&gt; println!("Segunda-feira"),
+        3 =&gt; println!("Terça-feira"),
+        4 =&gt; println!("Quarta-feira"),
+        5 =&gt; println!("Quinta-feira"),
+        6 =&gt; println!("Sexta-feira"),
+        7 =&gt; println!("Sábado"),
+        _ =&gt; println!("Insira um valor válido!"),
+    }
+}</code></pre>
+</details>
+<p>07 - Receba o número do mês (1-12) e retorne:</p>
+<ul>
+<li>Nome do mês</li>
+<li>Quantos dias ele tem (considere Fevereiro com 28)</li>
+</ul>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira o número");
+
+    let mut entrada: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada)
+        .expect("Erro na inserção de dados!");
+
+    let numero:u8 = match entrada.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    match numero {
+        1 =&gt; println!("Janeiro - 31 Dias"),
+        2 =&gt; println!("Fevereiro - 28 Dias"),
+        3 =&gt; println!("Março - 31 Dias"),
+        4 =&gt; println!("Abril - 30 Dias"),
+        5 =&gt; println!("Maio - 31 Dias"),
+        6 =&gt; println!("Junho - 30 Dias"),
+        7 =&gt; println!("Julho - 31 Dias"),
+        8 =&gt; println!("Agosto - 31 Dias"),
+        9 =&gt; println!("Setembro - 30 Dias"),
+        10 =&gt; println!("Outubro - 31 Dias"),
+        11 =&gt; println!("Novembro - 30 Dias"),
+        12 =&gt; println!("Dezembro - 31 Dias"),
+        _ =&gt; println!("Insira um valor válido!"),
+    }
+}</code></pre>
+</details>
+<p>08 - Receba um caractere e classifique-o usando match:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Tipo</th><th>Faixa</th></tr>
+</thead>
+<tbody>
+<tr><td>0 - 9</td><td>Dígito</td></tr>
+<tr><td>a - z</td><td>Letra</td></tr>
+<tr><td>A - Z</td><td>Letra</td></tr>
+<tr><td>‘  ’</td><td>Espaço</td></tr>
+<tr><td>_</td><td>Símbolo Especial</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira um caractere:");
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&amp;mut input)
+        .expect("Erro na inserção de dados!");
+
+    let ch: char = input.chars().next().unwrap();
+
+    match ch {
+        '0'..='9' =&gt; println!("Número: 0-9!"),
+        'a'..='z' | 'A'..='Z' =&gt; println!("Letra: aA - zZ!"),
+        ' ' =&gt; println!("Espaço!"),
+        _ =&gt; println!("Símbolo especial!"),
+    }
+}</code></pre>
+</details>
+<p>09 - Receba coordenadas (x, y) e indique em qual quadrante elas estão:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Coordenada</th><th>Quadrante</th></tr>
+</thead>
+<tbody>
+<tr><td>(0, 0)</td><td>Origem</td></tr>
+<tr><td>(positivo, positivo)</td><td>Quadrante I</td></tr>
+<tr><td>(negativo, positivo)</td><td>Quadrante II</td></tr>
+<tr><td>(negativo, negativo)</td><td>Quadrante III</td></tr>
+<tr><td>(positivo, negativo)</td><td>Quadrante IV</td></tr>
+</tbody>
+</table>
+</div>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira a coordenada (x):");
+
+    let mut entrada_x = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_x)
+        .expect("Erro na inserção de dados!");
+
+    let coordenada_x: i16 = match entrada_x.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    println!("Insira a coordenada (y):");
+
+    let mut entrada_y = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_y)
+        .expect("Erro na inserção de dados!");
+
+    let coordenada_y: i16 = match entrada_y.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    match (coordenada_x, coordenada_y) {
+        (0, 0) =&gt; println!("Origem"),
+        (x, y) if x &gt; 0 &amp;&amp; y &gt; 0 =&gt; println!("Quadrante I"),
+        (x, y) if x &lt; 0 &amp;&amp; y &gt; 0 =&gt; println!("Quadrante II"),
+        (x, y) if x &lt; 0 &amp;&amp; y &lt; 0 =&gt; println!("Quadrante III"),
+        (x, y) if x &gt; 0 &amp;&amp; y &lt; 0 =&gt; println!("Quadrante IV"),
+        _ =&gt; println!("Sobre o eixo!"),
+    };
+}</code></pre>
+</details>
+<p>10 - Receba a quantidade de itens comprados e o tipo de cliente (‘N’ = Normal, ‘V’ = VIP):</p>
+<ul>
+<li>Use match com tuplas (tipo, quantidade)</li>
+<li>VIP: 20% de desconto sempre</li>
+<li>Normal: 10% se comprar 10+ itens, 5% se 5-9 itens, sem desconto se menos</li>
+</ul>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::{io, u8};
+
+fn main() {
+    println!("Insira o tipo (V ou N):");
+
+    let mut entrada_tipo: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_tipo)
+        .expect("Erro na inserção de dados!");
+
+    let tipo: char = entrada_tipo.chars().next().unwrap();
+
+    println!("Insira a quantidade:");
+
+    let mut entrada_quantidade: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_quantidade)
+        .expect("Erro na inserção de dados!");
+
+    let quantidade: u8 = match entrada_quantidade.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    match (tipo, quantidade) {
+        ('V' | 'v', u8::MIN..=u8::MAX) =&gt; println!("20% de desconto sempre!"),
+        ('N' | 'n', 10..=u8::MAX) =&gt; println!("10% de desconto!"),
+        ('N' | 'n', 5..=9) =&gt; println!("5% de desconto!"),
+        _ =&gt; println!("Sem desconto!"),
+    };
+}</code></pre>
+</details>
+<p>11 - Crie uma calculadora que recebe dois números e um operador (+, -, *, /) e retorna o resultado usando match para o operador.</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Insira o número (A):");
+
+    let mut entrada_a: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_a)
+        .expect("Erro na inserção de dados!");
+
+    let numero_a: f32 = match entrada_a.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    println!("Insira o número (B):");
+
+    let mut entrada_b: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_b)
+        .expect("Erro na inserção de dados!");
+
+    let numero_b: f32 = match entrada_b.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    println!("Insira o operador: +, -, *, /");
+
+    let mut entrada_operador: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_operador)
+        .expect("Erro na inserção de dados!");
+
+    let operador: char = entrada_operador.trim().chars().next().unwrap();
+
+    let _resultado = match operador {
+        '+' =&gt; println!("\n{} + {} = {}", numero_a, numero_b, numero_a + numero_b),
+        '-' =&gt; println!("\n{} - {} = {}", numero_a, numero_b, numero_a - numero_b),
+        '*' =&gt; println!("\n{} * {} = {}", numero_a, numero_b, numero_a * numero_b),
+        '/' =&gt; println!("\n{} / {} = {}", numero_a, numero_b, numero_a / numero_b),
+        _ =&gt; println!("\nErro de cálculo!"),
+    };
+}</code></pre>
+</details>
+<p>12 - Receba as escolhas de dois jogadores (1 = Pedra, 2 = Papel, 3 = Tesoura) e determine o vencedor usando pareamento de tuplas (tuple matching): match(jogador1, jogador2) { … }</p>
+<p><a href="">Playground!</a></p>
+<details>
+<summary>Resposta</summary>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("-- Início do Jogo --");
+    println!("");
+    println!("Selecione:");
+    println!("[1] Pedra");
+    println!("[2] Papel");
+    println!("[3] Tesoura");
+    println!("");
+
+    println!("Jogador 1:");
+    let mut entrada_jogador1: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_jogador1)
+        .expect("Erro na inserção de dados!");
+
+    let escolha_jogador1: u8 = match entrada_jogador1.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    println!("\nJogador 2:");
+    let mut entrada_jogador2: String = String::new();
+    io::stdin()
+        .read_line(&amp;mut entrada_jogador2)
+        .expect("Erro na inserção de dados!");
+
+    let escolha_jogador2: u8 = match entrada_jogador2.trim().parse() {
+        Ok(valor) =&gt; valor,
+        Err(_) =&gt; {
+            println!("Erro na conversão de dados!");
+            return;
+        }
+    };
+
+    let _resultado = match (escolha_jogador1, escolha_jogador2) {
+        (1, 1) =&gt; println!("Jogo empatado!"),
+        (1, 2) =&gt; println!("Jogador 2 - Vence!"),
+        (1, 3) =&gt; println!("Jogador 1 - Vence!"),
+        (2, 1) =&gt; println!("Jogador 1 - Vence!"),
+        (2, 2) =&gt; println!("Jogo empatado!"),
+        (2, 3) =&gt; println!("Jogador 2 - Vence!"),
+        (3, 1) =&gt; println!("Jogador 2 - Vence!"),
+        (3, 2) =&gt; println!("Jogador 1 - Vence!"),
+        (3, 3) =&gt; println!("Jogo empatado!"),
+        _ =&gt; println!("Erro ao processar jogo!"),
+    };
+}</code></pre>
+</details>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../02-data-structures/arrays.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../05-control-flow/match.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../02-data-structures/questions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -237,13 +742,10 @@ println!("{:#?}", nomes);
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../02-data-structures/arrays.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../05-control-flow/match.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../02-data-structures/questions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
